@@ -1,6 +1,6 @@
 {
   "name": "@clockwise/spot",
-  "version": "1.9.0",
+  "version": "1.9.0-cw1",
   "author": "Francois Wouts, Leslie Fung",
   "bin": {
     "spot": "./bin/run"
