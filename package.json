@@ -91,7 +91,7 @@
     "build": "tsc",
     "build:watch": "tsc --watch",
     "postpack": "rm -f oclif.manifest.json",
-    "prepack": "rm -rf build; tsc && oclif-dev manifest && yarn build-docs && oclif-dev readme",
+    "prepack": "rm -rf build; tsc && oclif-dev manifest && oclif-dev readme",
     "test": "jest -w 4",
     "ci:test": "jest --config=jest.ci.config.js --ci -w 4",
     "lint:check": "yarn prettier:check && yarn eslint:check",
