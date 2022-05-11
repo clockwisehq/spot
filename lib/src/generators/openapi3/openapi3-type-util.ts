@@ -127,7 +127,7 @@ export function typeToSchemaOrReferenceObject(
       return intersectionTypeToSchema(type, typeTable);
     case TypeKind.REFERENCE:
       if (inlineReferences)
-        return typeToSchemaOrReferenceObject(types_1.dereferenceType(type, typeTable), typeTable, nullable);
+        return typeToSchemaOrReferenceObject(dereferenceType(type, typeTable), typeTable, nullable);
       else
         return referenceTypeToSchema(type, nullable);
     default:
