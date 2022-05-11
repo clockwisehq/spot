@@ -39,7 +39,8 @@ import {
 export function typeToSchemaOrReferenceObject(
   type: Type,
   typeTable: TypeTable,
-  nullable?: boolean
+  nullable?: boolean,
+  inlineReferences?: boolean
 ): SchemaObject | ReferenceObject {
   switch (type.kind) {
     case TypeKind.NULL:
@@ -125,7 +126,10 @@ export function typeToSchemaOrReferenceObject(
     case TypeKind.INTERSECTION:
       return intersectionTypeToSchema(type, typeTable);
     case TypeKind.REFERENCE:
-      return referenceTypeToSchema(type, nullable);
+      if (inlineReferences)
+        return typeToSchemaOrReferenceObject(types_1.dereferenceType(type, typeTable), typeTable, nullable);
+      else
+        return referenceTypeToSchema(type, nullable);
     default:
       assertNever(type);
   }

@@ -47,7 +47,7 @@ import {
   isReferenceObject
 } from "./openapi3-type-util";
 
-const SECURITY_HEADER_SCHEME_NAME = "SecurityHeader";
+const SECURITY_HEADER_SCHEME_NAME = "jwt";
 
 export function generateOpenAPI3(contract: Contract): OpenApiV3 {
   const typeTable = TypeTable.fromArray(contract.types);
@@ -91,10 +91,8 @@ function contractToComponentsObject(
         : undefined,
     securitySchemes: contract.security && {
       [SECURITY_HEADER_SCHEME_NAME]: {
-        type: "apiKey",
-        in: "header",
-        name: contract.security.name,
-        description: contract.security.description
+        type: "http",
+        scheme: "bearer"
       }
     }
   };
@@ -163,7 +161,7 @@ function endpointRequestToParameterObjects(
     in: "path",
     description: p.description,
     required: true,
-    schema: typeToSchemaOrReferenceObject(p.type, typeTable),
+    schema: typeToSchemaOrReferenceObject(p.type, typeTable, false, true),
     examples: exampleToOpenApiExampleSet(p.examples)
   }));
 
@@ -174,7 +172,7 @@ function endpointRequestToParameterObjects(
       description: p.description,
       ...typeToQueryParameterSerializationStrategy(p.type, typeTable, config),
       required: !p.optional,
-      schema: typeToSchemaOrReferenceObject(p.type, typeTable),
+      schema: typeToSchemaOrReferenceObject(p.type, typeTable, false, true),
       examples: exampleToOpenApiExampleSet(p.examples)
     })
   );
