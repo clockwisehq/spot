@@ -42,7 +42,7 @@ function createProject(): Project {
     experimentalDecorators: true,
     baseUrl: "./",
     paths: {
-      "@airtasker/spot": [path.join(__dirname, "../lib")]
+      "@clockwise/spot": [path.join(__dirname, "../lib")]
     }
   };
 
