@@ -232,6 +232,7 @@ export const propTypeMap = new Map<
   ],
   ["exclusiveMaximum", { type: "boolean", targetTypes: ["number"] }],
   ["exclusiveMinimum", { type: "boolean", targetTypes: ["number"] }],
+  ["format", { type: "string", targetTypes: [TypeKind.STRING] }],
   ["maximum", { type: "number", targetTypes: ["number"] }],
   ["maxItems", { type: "number", targetTypes: [TypeKind.ARRAY] }],
   ["maxLength", { type: "number", targetTypes: [TypeKind.STRING] }],
